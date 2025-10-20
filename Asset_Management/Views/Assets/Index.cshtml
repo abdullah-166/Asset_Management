@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Asset_Management.Models.Asset>
+﻿@model IEnumerable<Asset_Management.DataModels.Component>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,7 +13,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.AssetTag)
+                @Html.DisplayNameFor(model => model.ComponentTag)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
@@ -52,7 +52,7 @@
                 @Html.DisplayNameFor(model => model.Status)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.AssignedToUserId)
+                @Html.DisplayNameFor(model => model.AssignedToEmployeeId)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.AssignedAt)
@@ -79,7 +79,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.AssetTag)
+                @Html.DisplayFor(modelItem => item.ComponentTag)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -118,7 +118,7 @@
                 @Html.DisplayFor(modelItem => item.Status)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AssignedToUserId)
+                @Html.DisplayFor(modelItem => item.AssignedToEmployeeId)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.AssignedAt)
@@ -139,9 +139,9 @@
                 @Html.DisplayFor(modelItem => item.IsActive)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.AssetId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.AssetId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.AssetId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.ComponentId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ComponentId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ComponentId">Delete</a>
             </td>
         </tr>
 }

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Asset_Management.Models;
+using Asset_Management.DataModels;
 
 namespace Asset_Management.Data
 {
@@ -10,6 +10,8 @@ namespace Asset_Management.Data
             : base(options)
         {
         }
-        public DbSet<Asset_Management.Models.Asset> Asset { get; set; } = default!;
+
+        public DbSet<Component> Components { get; set; } = default!;
+        public DbSet<Employee> Employees { get; set; } = default!;
     }
 }

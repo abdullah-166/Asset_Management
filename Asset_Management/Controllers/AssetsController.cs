@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Asset_Management.Data;
-using Asset_Management.Models;
+using Asset_Management.DataModels;
 
 namespace Asset_Management.Controllers
 {
@@ -22,7 +22,7 @@ namespace Asset_Management.Controllers
         // GET: Assets
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Asset.ToListAsync());
+            return View(await _context.Components.ToListAsync());
         }
 
         // GET: Assets/Details/5
@@ -32,15 +32,14 @@ namespace Asset_Management.Controllers
             {
                 return NotFound();
             }
-
-            var asset = await _context.Asset
-                .FirstOrDefaultAsync(m => m.AssetId == id);
-            if (asset == null)
+            var component = await _context.Components
+                .FirstOrDefaultAsync(m => m.ComponentId == id);
+            if (component == null)
             {
                 return NotFound();
             }
 
-            return View(asset);
+            return View(component);
         }
 
         // GET: Assets/Create
@@ -54,16 +53,16 @@ namespace Asset_Management.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AssetId,AssetTag,Name,Category,Brand,Model,SerialNumber,PurchaseDate,PurchaseOrderNo,Supplier,PurchasePrice,WarrantyEndDate,Location,Status,AssignedToUserId,AssignedAt,QRCodeValue,QRCodeGeneratedAt,QRCodePrinted,Notes,IsActive")] Asset asset)
+        public async Task<IActionResult> Create([Bind("ComponentId,ComponentTag,Name,Category,Brand,Model,SerialNumber,PurchaseDate,PurchaseOrderNo,Supplier,PurchasePrice,WarrantyEndDate,Location,Status,AssignedToEmployeeId,AssignedAt,QRCodeValue,QRCodeGeneratedAt,QRCodePrinted,Notes,IsActive")] Component component)
         {
             if (ModelState.IsValid)
             {
-                asset.AssetId = Guid.NewGuid();
-                _context.Add(asset);
+                component.ComponentId = Guid.NewGuid();
+                _context.Add(component);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(asset);
+            return View(component);
         }
 
         // GET: Assets/Edit/5
@@ -73,13 +72,12 @@ namespace Asset_Management.Controllers
             {
                 return NotFound();
             }
-
-            var asset = await _context.Asset.FindAsync(id);
-            if (asset == null)
+            var component = await _context.Components.FindAsync(id);
+            if (component == null)
             {
                 return NotFound();
             }
-            return View(asset);
+            return View("Create", component);
         }
 
         // POST: Assets/Edit/5
@@ -87,9 +85,9 @@ namespace Asset_Management.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("AssetId,AssetTag,Name,Category,Brand,Model,SerialNumber,PurchaseDate,PurchaseOrderNo,Supplier,PurchasePrice,WarrantyEndDate,Location,Status,AssignedToUserId,AssignedAt,QRCodeValue,QRCodeGeneratedAt,QRCodePrinted,Notes,IsActive")] Asset asset)
+        public async Task<IActionResult> Edit(Guid id, [Bind("ComponentId,ComponentTag,Name,Category,Brand,Model,SerialNumber,PurchaseDate,PurchaseOrderNo,Supplier,PurchasePrice,WarrantyEndDate,Location,Status,AssignedToEmployeeId,AssignedAt,QRCodeValue,QRCodeGeneratedAt,QRCodePrinted,Notes,IsActive")] Component component)
         {
-            if (id != asset.AssetId)
+            if (id != component.ComponentId)
             {
                 return NotFound();
             }
@@ -98,12 +96,12 @@ namespace Asset_Management.Controllers
             {
                 try
                 {
-                    _context.Update(asset);
+                    _context.Update(component);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!AssetExists(asset.AssetId))
+                    if (!ComponentExists(component.ComponentId))
                     {
                         return NotFound();
                     }
@@ -114,7 +112,7 @@ namespace Asset_Management.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(asset);
+            return View(component);
         }
 
         // GET: Assets/Delete/5
@@ -124,15 +122,14 @@ namespace Asset_Management.Controllers
             {
                 return NotFound();
             }
-
-            var asset = await _context.Asset
-                .FirstOrDefaultAsync(m => m.AssetId == id);
-            if (asset == null)
+            var component = await _context.Components
+                .FirstOrDefaultAsync(m => m.ComponentId == id);
+            if (component == null)
             {
                 return NotFound();
             }
 
-            return View(asset);
+            return View(component);
         }
 
         // POST: Assets/Delete/5
@@ -140,19 +137,19 @@ namespace Asset_Management.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var asset = await _context.Asset.FindAsync(id);
-            if (asset != null)
+            var component = await _context.Components.FindAsync(id);
+            if (component != null)
             {
-                _context.Asset.Remove(asset);
+                _context.Components.Remove(component);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool AssetExists(Guid id)
+        private bool ComponentExists(Guid id)
         {
-            return _context.Asset.Any(e => e.AssetId == id);
+            return _context.Components.Any(e => e.ComponentId == id);
         }
     }
 }
