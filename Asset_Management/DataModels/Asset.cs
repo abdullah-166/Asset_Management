@@ -15,7 +15,7 @@ namespace Asset_Management.Models
 
         [Required]
         [StringLength(100)]
-        public string Name { get; set; } 
+        public string Name { get; set; }
 
         [StringLength(50)]
         public string Category { get; set; }
@@ -43,7 +43,7 @@ namespace Asset_Management.Models
         public DateTime? WarrantyEndDate { get; set; }
 
         [StringLength(100)]
-        public string Location { get; set; } 
+        public string Location { get; set; }
 
         [Required]
         [StringLength(20)]
