@@ -1,11 +1,9 @@
-using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Asset_Management.DataModels
+namespace Asset_Management.ViewModels
 {
-    public class Employee
+    public class EmployeeVM
     {
-        [Key]
         public Guid EmployeeId { get; set; }
 
         [StringLength(100)]

@@ -1,12 +1,10 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Asset_Management.Models
+namespace Asset_Management.ViewModels
 {
-    public class Asset
+    public class DistributedAssetVM
     {
-        [Key]
         public Guid AssetId { get; set; }
 
         [StringLength(50)]
@@ -16,7 +14,7 @@ namespace Asset_Management.Models
         public string? Name { get; set; }
 
         [StringLength(50)]
-        public string Category  { get; set; }
+        public string Category { get; set; }
 
         [StringLength(50)]
         public string Brand { get; set; }
@@ -59,6 +57,6 @@ namespace Asset_Management.Models
 
         public string? Notes { get; set; }
 
-        public bool IsActive { get; set; } = true; 
+        public bool IsActive { get; set; } = true;
     }
 }

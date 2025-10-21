@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Asset_Management.DataModels;
+using Asset_Management.Models;
 
 namespace Asset_Management.Data
 {
@@ -10,8 +11,8 @@ namespace Asset_Management.Data
             : base(options)
         {
         }
-
-        public DbSet<Component> Components { get; set; } = default!;
-        public DbSet<Employee> Employees { get; set; } = default!;
+        public DbSet<Asset> Assets {  get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<DistributedAsset> DistributedAssets { get; set; }
     }
 }
