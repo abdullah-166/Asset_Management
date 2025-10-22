@@ -22,5 +22,7 @@ namespace Asset_Management.ViewModels
         public string? JobTitle { get; set; }
 
         public bool IsActive { get; set; } = true;
+        public AssetVM? AssetVM { get; set; }
+        public DistributedAssetVM? DistributedAssetVM { get; set; }
     }
 }

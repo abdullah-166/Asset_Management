@@ -16,24 +16,24 @@ namespace Asset_Management.Models
         public string? Name { get; set; }
 
         [StringLength(50)]
-        public string Category  { get; set; }
+        public string? Category  { get; set; }
 
         [StringLength(50)]
-        public string Brand { get; set; }
+        public string? Brand { get; set; }
 
         [StringLength(50)]
-        public string Model { get; set; }
+        public string? Modell { get; set; }
 
         [StringLength(100)]
-        public string SerialNumber { get; set; }
+        public string? SerialNumber { get; set; }
 
         public DateTime? PurchaseDate { get; set; }
 
         [StringLength(50)]
-        public string PurchaseOrderNo { get; set; }
+        public string? PurchaseOrderNo { get; set; }
 
         [StringLength(100)]
-        public string Supplier { get; set; }
+        public string? Supplier { get; set; }
 
         [Column(TypeName = "decimal(10,2)")]
         public decimal? PurchasePrice { get; set; }

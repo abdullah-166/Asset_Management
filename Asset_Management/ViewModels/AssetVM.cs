@@ -20,7 +20,7 @@ namespace Asset_Management.ViewModels
         public string? Brand { get; set; }
 
         [StringLength(50)]
-        public string? Model { get; set; }
+        public string? Modell { get; set; }
 
         [StringLength(100)]
         public string? SerialNumber { get; set; }
@@ -58,5 +58,7 @@ namespace Asset_Management.ViewModels
         public string? Notes { get; set; }
 
         public bool IsActive { get; set; } = true;
+        public DistributedAssetVM? DistributedAssetVM { get; set; }
+        public EmployeeVM? EmployeeVM { get; set; }    
     }
 }
