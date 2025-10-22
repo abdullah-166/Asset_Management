@@ -18,7 +18,6 @@ namespace Asset_Management.Controllers
             return View();
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(AssetVM model){
             if (ModelState.IsValid) {
                 var asset = new Asset
