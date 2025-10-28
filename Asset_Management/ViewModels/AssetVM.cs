@@ -6,29 +6,15 @@ namespace Asset_Management.ViewModels
     public class AssetVM
     {
         public Guid AssetId { get; set; }
-
-        [StringLength(50)]
-        public string? AssetTag { get; set; }
-
-        [StringLength(100)]
-        public string? Name { get; set; }
-
         [StringLength(50)]
         public string? Category { get; set; }
-
+        [StringLength(100)]
+        public string? Name { get; set; }
         [StringLength(50)]
         public string? Brand { get; set; }
 
         [StringLength(50)]
         public string? Modell { get; set; }
-
-        [StringLength(100)]
-        public string? SerialNumber { get; set; }
-
-        public DateTime? PurchaseDate { get; set; }
-
-        [StringLength(50)]
-        public string? PurchaseOrderNo { get; set; }
 
         [StringLength(100)]
         public string? Supplier { get; set; }
@@ -38,27 +24,14 @@ namespace Asset_Management.ViewModels
 
         public DateTime? WarrantyEndDate { get; set; }
 
-        [StringLength(100)]
-        public string? Location { get; set; }
-
         [StringLength(20)]
         public string Status { get; set; } = "Available";
-
-        public Guid? AssignedToUserId { get; set; }
-
-        public DateTime? AssignedAt { get; set; }
-
-        [StringLength(128)]
-        public string? QRCodeValue { get; set; }
-
-        public DateTime? QRCodeGeneratedAt { get; set; }
-
-        public int QRCodePrinted { get; set; } = 0;
-
         public string? Notes { get; set; }
 
         public bool IsActive { get; set; } = true;
         public DistributedAssetVM? DistributedAssetVM { get; set; }
-        public EmployeeVM? EmployeeVM { get; set; }    
+        public EmployeeVM? EmployeeVM { get; set; }
+        public DateTime? PurchaseDate { get; internal set; }
+        public string PurchaseOrderNo { get; internal set; }
     }
 }

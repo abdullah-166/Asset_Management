@@ -3,6 +3,7 @@ using Asset_Management.Models;
 using Asset_Management.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using Asset_Management.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Asset_Management.Controllers
 {
@@ -22,37 +23,29 @@ namespace Asset_Management.Controllers
             if (ModelState.IsValid) {
                 var asset = new Asset
                 {
-                    AssetId = Guid.NewGuid(),
-                    AssetTag = model.AssetTag,
                     Name = model.Name,
                     Category = model.Category,
                     Brand = model.Brand,
                     Modell = model.Modell,
-                    SerialNumber = model.SerialNumber,
                     PurchaseDate = model.PurchaseDate,
                     PurchaseOrderNo = model.PurchaseOrderNo,
                     Supplier = model.Supplier,
                     PurchasePrice = model.PurchasePrice,
                     WarrantyEndDate = model.WarrantyEndDate,
-                    Location = model.Location,
                     Status = model.Status,
-                    AssignedToUserId = model.AssignedToUserId,
-                    AssignedAt = model.AssignedAt,
-                    QRCodeValue = model.QRCodeValue,
-                    QRCodeGeneratedAt = model.QRCodeGeneratedAt,
-                    QRCodePrinted = model.QRCodePrinted,
                     Notes = model.Notes,
                     IsActive = model.IsActive
                 };
                 _context.Assets.Add(asset);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
             return View(model);
         }
         public async Task <IActionResult> Index(){
-            var assets = await _context.Assets.ToListAsync();
+            var assets = await _context.Assets.Where(x=>x.Status == "Available").ToListAsync();
             return View(assets);
         }
     }
 }
+//Select * from Assets where Status = "Available";

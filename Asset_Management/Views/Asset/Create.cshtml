@@ -10,80 +10,74 @@
 
 <form asp-action="Create" method="post">
     <div class="row">
-        <div class="col-md-6 mb-3">
-            <label asp-for="AssetTag" class="form-label"></label>
+        @* <div class="col-md-6 mb-3">
+            <label class="form-label">Asset Tag</label>
             <input asp-for="AssetTag" class="form-control" />
-            <span asp-validation-for="AssetTag" class="text-danger"></span>
-        </div>
+        </div> *@
 
-        <div class="col-md-6 mb-3">
-            <label asp-for="Name" class="form-label"></label>
+        @* <div class="col-md-6 mb-3">
+            <label class="form-label">Name</label>
             <input asp-for="Name" class="form-control" />
             <span asp-validation-for="Name" class="text-danger"></span>
+        </div> *@
+
+        <div class="col-md-6 mb-3">
+            <label class="form-label">Select a Category:</label>
+            <select asp-for="Category" class="form-control">
+                <option value="Keyboard">Keyboard</option>
+                <option value="Mouse">Mouse</option>
+                <option value="Camera">Camera</option>
+            </select>
         </div>
 
         <div class="col-md-6 mb-3">
-            <label asp-for="Category" class="form-label"></label>
-            <input asp-for="Category" class="form-control" />
-            <span asp-validation-for="Category" class="text-danger"></span>
-        </div>
-
-        <div class="col-md-6 mb-3">
-            <label asp-for="Brand" class="form-label"></label>
+            <label class="form-label">Brand</label>
             <input asp-for="Brand" class="form-control" />
             <span asp-validation-for="Brand" class="text-danger"></span>
         </div>
 
         <div class="col-md-6 mb-3">
-            <label asp-for="Modell" class="form-label"></label>
+            <label class="form-label">Model</label>
             <input asp-for="Modell" class="form-control" />
             <span asp-validation-for="Modell" class="text-danger"></span>
         </div>
 
         <div class="col-md-6 mb-3">
-            <label asp-for="SerialNumber" class="form-label"></label>
-            <input asp-for="SerialNumber" class="form-control" />
-            <span asp-validation-for="SerialNumber" class="text-danger"></span>
-        </div>
-
-        <div class="col-md-6 mb-3">
-            <label asp-for="PurchaseDate" class="form-label"></label>
+            <label class="form-label">Purchase Date</label>
             <input asp-for="PurchaseDate" type="date" class="form-control" />
-            <span asp-validation-for="PurchaseDate" class="text-danger"></span>
         </div>
 
         <div class="col-md-6 mb-3">
-            <label asp-for="PurchaseOrderNo" class="form-label"></label>
+            <label class="form-label">Purchase Order No</label>
             <input asp-for="PurchaseOrderNo" class="form-control" />
-            <span asp-validation-for="PurchaseOrderNo" class="text-danger"></span>
         </div>
 
         <div class="col-md-6 mb-3">
-            <label asp-for="Supplier" class="form-label"></label>
+            <label class="form-label">Supplier</label>
             <input asp-for="Supplier" class="form-control" />
             <span asp-validation-for="Supplier" class="text-danger"></span>
         </div>
 
         <div class="col-md-6 mb-3">
-            <label asp-for="PurchasePrice" class="form-label"></label>
+            <label class="form-label">Purchase Price</label>
             <input asp-for="PurchasePrice" class="form-control" />
             <span asp-validation-for="PurchasePrice" class="text-danger"></span>
         </div>
 
         <div class="col-md-6 mb-3">
-            <label asp-for="WarrantyEndDate" class="form-label"></label>
+            <label class="form-label">Warranty End Date</label>
             <input asp-for="WarrantyEndDate" type="date" class="form-control" />
             <span asp-validation-for="WarrantyEndDate" class="text-danger"></span>
         </div>
 
-        <div class="col-md-6 mb-3">
-            <label asp-for="Location" class="form-label"></label>
+        @* <div class="col-md-6 mb-3">
+            <label class="form-label">Location</label>
             <input asp-for="Location" class="form-control" />
             <span asp-validation-for="Location" class="text-danger"></span>
-        </div>
+        </div> *@
 
         <div class="col-md-6 mb-3">
-            <label asp-for="Status" class="form-label"></label>
+            <label class="form-label">Status</label>
             <select asp-for="Status" class="form-select">
                 <option value="Available">Available</option>
                 <option value="Assigned">Assigned</option>
@@ -94,7 +88,7 @@
         </div>
 
         <div class="col-md-12 mb-3">
-            <label asp-for="Notes" class="form-label"></label>
+            <label class="form-label">Notes</label>
             <textarea asp-for="Notes" class="form-control"></textarea>
             <span asp-validation-for="Notes" class="text-danger"></span>
         </div>

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Asset_Management.Migrations
 {
     /// <inheritdoc />
-    public partial class A1 : Migration
+    public partial class _2810_v1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -51,34 +51,79 @@ namespace Asset_Management.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Asset",
+                name: "Assets",
                 columns: table => new
                 {
                     AssetId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    AssetTag = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Category = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Brand = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Model = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    SerialNumber = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Category = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    Brand = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Modell = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     PurchaseDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    PurchaseOrderNo = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Supplier = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    PurchaseOrderNo = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Supplier = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     PurchasePrice = table.Column<decimal>(type: "decimal(10,2)", nullable: true),
                     WarrantyEndDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Location = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Status = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    AssignedToUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    AssignedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    QRCodeValue = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
-                    QRCodeGeneratedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    QRCodePrinted = table.Column<int>(type: "int", nullable: false),
-                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Notes = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Asset", x => x.AssetId);
+                    table.PrimaryKey("PK_Assets", x => x.AssetId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DistributedAssets",
+                columns: table => new
+                {
+                    DistributedId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    AssetId = table.Column<int>(type: "int", nullable: false),
+                    AssignedToUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    AssignedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    QRCodeValue = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
+                    Status = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    WarrantyEndDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DistributedAssets", x => x.DistributedId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Employees",
+                columns: table => new
+                {
+                    EmployeeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FullName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    Phone = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    Department = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    JobTitle = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Employees", x => x.EmployeeId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "QRCodes",
+                columns: table => new
+                {
+                    QRCodeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    AssetId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    QRCodeValue = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    GeneratedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsPrinted = table.Column<bool>(type: "bit", nullable: false),
+                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_QRCodes", x => x.QRCodeId);
                 });
 
             migrationBuilder.CreateTable(
@@ -246,7 +291,16 @@ namespace Asset_Management.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Asset");
+                name: "Assets");
+
+            migrationBuilder.DropTable(
+                name: "DistributedAssets");
+
+            migrationBuilder.DropTable(
+                name: "Employees");
+
+            migrationBuilder.DropTable(
+                name: "QRCodes");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

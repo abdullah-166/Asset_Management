@@ -14,5 +14,6 @@ namespace Asset_Management.Data
         public DbSet<Asset> Assets {  get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<DistributedAsset> DistributedAssets { get; set; }
+        public DbSet<QRCode> QRCodes { get; set; }
     }
 }
